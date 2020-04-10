@@ -1,0 +1,8 @@
+Add animation to switch between work 
+time label and break time label
+
+Add settings page that allows changing 
+the various state values.
+(different times for work and breaks)
+
+Add more styling (maybe bootstrap or materialize)
