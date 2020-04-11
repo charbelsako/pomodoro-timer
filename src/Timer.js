@@ -13,6 +13,19 @@ export default class Timer extends Component {
 
   componentDidMount() {
     this.setState({ timeLeft: this.state.workTimer })
+    // this.animate()
+  }
+
+  animate = () => {
+    let workLabel = document.querySelector('#work')
+    let breakLabel = document.querySelector('#break')
+    if (!this.state.work) {
+      workLabel.style.transform = 'translate3d(0, 100px, 0)'
+      breakLabel.style.transform = 'translate3d(0, 0, 0)'
+    } else {
+      workLabel.style.transform = 'translate3d(0, 0, 0)'
+      breakLabel.style.transform = 'translate3d(0, -100px, 0)'
+    }
   }
 
   switchTimers = () => {
@@ -20,6 +33,7 @@ export default class Timer extends Component {
       work: !prevState.work,
     }))
     this.refillTimer()
+    this.animate()
   }
 
   refillTimer = () => {
@@ -60,9 +74,15 @@ export default class Timer extends Component {
       <div className="row">
         <h1>Pomodoro Timer</h1>
 
-        <div id="status" className="item">
-          {this.state.work ? <h4>Work</h4> : <h4>Break Time</h4>}
+        <div id="status" className="item row">
+          <span id="break">
+            <h1>Break Time</h1>
+          </span>
+          <span id="work">
+            <h1>Work</h1>
+          </span>
         </div>
+
         <div id="timer" className="item">
           {Math.floor(this.state.timeLeft / 60)}:
           {this.state.timeLeft % 60 < 10

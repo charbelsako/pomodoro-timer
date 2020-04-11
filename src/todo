@@ -1,8 +1,11 @@
-Add animation to switch between work 
-time label and break time label
+[x] - Add animation to switch between work 
+      time label and break time label
 
-Add settings page that allows changing 
-the various state values.
-(different times for work and breaks)
+[ ] - Add settings page that allows changing 
+      the various state values.
+      (different times for work and breaks)
 
-Add more styling (maybe bootstrap or materialize)
+[ ] - Add more styling (maybe bootstrap or materialize)
+
+[x] - Change some electron settings (like the title)
+

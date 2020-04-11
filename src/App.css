@@ -13,4 +13,37 @@
 }
 
 #status {
+  /* border: 1px solid green; */
+  overflow: hidden;
+  width: 100%;
+  height: 100px;
+  text-align: center;
+  justify-content: center;
+  position: relative;
+}
+
+#status > span {
+  color: rgb(221, 24, 24);
+  position: absolute;
+}
+
+/* #status span:hover {
+} */
+
+#break {
+  /* center is 0, 0, 0 */
+  transform: translate3d(0, -100px, 0);
+  transition: all 1s ease;
+}
+
+#work {
+  /* center is 0, 0, 0 */
+  transform: translate3d(0, 0, 0);
+  transition: all 1s ease;
+}
+
+@keyframes slideDown {
+  to {
+    transform: translate3d(0, 0, 0);
+  }
 }
