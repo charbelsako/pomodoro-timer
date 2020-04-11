@@ -1,11 +1,10 @@
 {
   "author": {
-      "name": "Charbel Sarkis",
-      "email": "someone@gmail.com"
+    "name": "Charbel Sarkis",
+    "email": "someone@gmail.com"
   },
-
   "name": "pomodoro-timer",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "private": false,
   "homepage": "./",
   "main": "public/electron.js",
@@ -24,7 +23,7 @@
     "eject": "react-scripts eject",
     "electron": "electron .",
     "electron-dev": "concurrently \"BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron .\"",
-    "electron-pack": "electron-builder main=build/electron.js -l deb"
+    "electron-pack": "electron-builder build -l deb"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -51,7 +50,7 @@
   "build": {
     "productName": "pomodoro timer",
     "appId": "com.pomodorotimer.www",
-    "electronVersion": "2.0.0",
+    "electronVersion": "5.0.6",
     "files": [
       "build/**/*",
       "node_modules/**/*"
