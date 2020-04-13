@@ -9,3 +9,9 @@
 
 [x] - Change some electron settings (like the title)
 
+[x] - Add tasks -- keeps track of how many pomodoro "work" times 
+      it took you to finish a task (Should be kept in a file or
+      stored on trello).
+
+[x] - Refactor some css (Some refactoring is still needed, but not
+      required)

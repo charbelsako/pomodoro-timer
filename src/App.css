@@ -1,7 +1,15 @@
 .row {
-  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.col {
   flex-direction: column;
   align-items: center;
+}
+
+.flex {
+  display: flex;
 }
 
 .item {
@@ -42,8 +50,14 @@
   transition: all 1s ease;
 }
 
-@keyframes slideDown {
+.btn-danger {
+  /* background-color: #f01b1bf6; */
+  /* border-color: #f01b1bf6; */
+  /* color: white; */
+}
+
+/* @keyframes slideDown {
   to {
     transform: translate3d(0, 0, 0);
   }
-}
+} */

@@ -4,16 +4,16 @@ export default class Timer extends Component {
   state = {
     work: true,
     // in seconds
-    workTimer: 30 * 60,
-    breakTimer: 5 * 60,
+    workTimer: 0.1 * 60,
+    breakTimer: 0.1 * 60,
     timeLeft: null,
     timer: null,
     disableStart: false,
+    numSessions: 0,
   }
 
   componentDidMount() {
     this.setState({ timeLeft: this.state.workTimer })
-    // this.animate()
   }
 
   animate = () => {
@@ -32,6 +32,10 @@ export default class Timer extends Component {
     this.setState((prevState) => ({
       work: !prevState.work,
     }))
+    // Increment once session is switched.
+    if (this.state.work) {
+      this.incrementSessionCount()
+    }
     this.refillTimer()
     this.animate()
   }
@@ -50,7 +54,16 @@ export default class Timer extends Component {
     }
   }
 
+  incrementSessionCount = () => {
+    this.setState((prevState) => ({ numSessions: prevState.numSessions + 1 }))
+  }
+
   startTimer = () => {
+    // Reset numSessions to 0
+    this.setState((prevState) => ({ numSessions: 0 }))
+    // Increment numSessions once at first.
+    this.incrementSessionCount()
+
     this.setState({ timer: setInterval(this.updateTimer, 1000) })
     this.toggleStartButton()
   }
@@ -62,6 +75,7 @@ export default class Timer extends Component {
   cancelTimer = () => {
     clearInterval(this.state.timer)
     this.setDefault()
+    // Shouldn't be toggled ()
     this.toggleStartButton()
   }
 
@@ -69,12 +83,15 @@ export default class Timer extends Component {
     this.setState({ timeLeft: this.state.workTimer })
   }
 
+  endTask = () => {
+    this.cancelTimer()
+  }
+
   render() {
     return (
-      <div className="row">
-        <h1>Pomodoro Timer</h1>
-
-        <div id="status" className="item row">
+      <div className="flex col">
+        {/* <h1>Pomodoro Timer</h1> */}
+        <div id="status" className="item flex">
           <span id="break">
             <h1>Break Time</h1>
           </span>
@@ -89,15 +106,23 @@ export default class Timer extends Component {
             ? '0' + (this.state.timeLeft % 60)
             : this.state.timeLeft % 60}
         </div>
-        <button
-          className="item"
-          onClick={this.startTimer}
-          disabled={this.state.disableStart}>
-          Start
-        </button>
-        <button className="item" onClick={this.cancelTimer}>
-          Cancel
-        </button>
+        <div className="flex row">
+          <button
+            className="item"
+            onClick={this.startTimer}
+            disabled={this.state.disableStart}>
+            Start
+          </button>
+          <button className="item" onClick={this.cancelTimer}>
+            Cancel
+          </button>
+        </div>
+        <div className="flex col">
+          <button onClick={this.endTask} className="item btn-danger">
+            End Task
+          </button>
+        </div>
+        <p>This task took you: {this.state.numSessions} work session(s)</p>
       </div>
     )
   }
