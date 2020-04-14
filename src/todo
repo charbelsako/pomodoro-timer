@@ -1,7 +1,7 @@
 [x] - Add animation to switch between work 
       time label and break time label
 
-[ ] - Add settings page that allows changing 
+[ ] - Add a settings page that allows changing 
       the various state values.
       (different times for work and breaks)
 
@@ -16,7 +16,14 @@
 [x] - Refactor some css (Some refactoring is still needed, but not
       required)
 
-[*] - Fix start button toggle bug. Always gets toggled when not 
+[x] - Fix start button toggle bug. Always gets toggled when not 
       needed to be toggled
 
-[*] - Info message gets shown only on ending a task
+[x] - Info message gets shown only on ending a task
+
+[ ] - use electron inside the app to save to a file (demo) Maybe 
+      save the length of the session (work or break) and date in a
+      csv format or something else (Date \n length(comma))
+
+[ ] - Add an analytics page that tells you how much work you've
+      done. based on the data from the file.
