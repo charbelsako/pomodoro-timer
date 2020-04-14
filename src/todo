@@ -15,3 +15,8 @@
 
 [x] - Refactor some css (Some refactoring is still needed, but not
       required)
+
+[*] - Fix start button toggle bug. Always gets toggled when not 
+      needed to be toggled
+
+[*] - Info message gets shown only on ending a task

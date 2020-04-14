@@ -10,6 +10,7 @@ export default class Timer extends Component {
     timer: null,
     disableStart: false,
     numSessions: 0,
+    showMessage: false,
   }
 
   componentDidMount() {
@@ -59,31 +60,35 @@ export default class Timer extends Component {
   }
 
   startTimer = () => {
+    this.setState({ showMessage: false })
     // Reset numSessions to 0
     this.setState((prevState) => ({ numSessions: 0 }))
     // Increment numSessions once at first.
     this.incrementSessionCount()
 
     this.setState({ timer: setInterval(this.updateTimer, 1000) })
-    this.toggleStartButton()
+    this.toggleStartButton(true)
   }
 
-  toggleStartButton = () => {
-    this.setState((prevState) => ({ disableStart: !prevState.disableStart }))
+  toggleStartButton = (value) => {
+    this.setState((prevState) => ({ disableStart: value }))
   }
 
   cancelTimer = () => {
     clearInterval(this.state.timer)
     this.setDefault()
-    // Shouldn't be toggled ()
-    this.toggleStartButton()
+    this.toggleStartButton(false)
   }
 
   setDefault = () => {
-    this.setState({ timeLeft: this.state.workTimer })
+    this.setState((prevState) => ({
+      timeLeft: this.state.workTimer,
+      timer: null,
+    }))
   }
 
   endTask = () => {
+    this.setState({ showMessage: true })
     this.cancelTimer()
   }
 
@@ -122,7 +127,10 @@ export default class Timer extends Component {
             End Task
           </button>
         </div>
-        <p>This task took you: {this.state.numSessions} work session(s)</p>
+        {this.state.showMessage && (
+          <p>This task took you: {this.state.numSessions} work session(s)</p>
+        )}
+        {this.state.timer}
       </div>
     )
   }
