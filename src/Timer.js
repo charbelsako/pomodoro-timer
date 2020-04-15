@@ -18,6 +18,7 @@ export default class Timer extends Component {
   }
 
   animate = () => {
+    // console.log(this.state.work)
     let workLabel = document.querySelector('#work')
     let breakLabel = document.querySelector('#break')
     if (!this.state.work) {
@@ -81,10 +82,15 @@ export default class Timer extends Component {
   }
 
   setDefault = () => {
-    this.setState((prevState) => ({
-      timeLeft: this.state.workTimer,
-      timer: null,
-    }))
+    this.setState(
+      (prevState) => ({
+        timeLeft: this.state.workTimer,
+        timer: null,
+        work: true,
+      }),
+      // Animates the labels back
+      this.animate
+    )
   }
 
   endTask = () => {
@@ -104,7 +110,6 @@ export default class Timer extends Component {
             <h1>Work</h1>
           </span>
         </div>
-
         <div id="timer" className="item">
           {Math.floor(this.state.timeLeft / 60)}:
           {this.state.timeLeft % 60 < 10
@@ -130,7 +135,7 @@ export default class Timer extends Component {
         {this.state.showMessage && (
           <p>This task took you: {this.state.numSessions} work session(s)</p>
         )}
-        {this.state.timer}
+        {/* {this.state.timer} <br /> {this.state.work + ''} */}
       </div>
     )
   }

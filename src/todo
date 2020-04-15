@@ -27,3 +27,5 @@
 
 [ ] - Add an analytics page that tells you how much work you've
       done. based on the data from the file.
+
+[x] - Bug: When cancelled or ended the label should return to work label
