@@ -4,8 +4,8 @@ export default class Timer extends Component {
   state = {
     work: true,
     // in seconds
-    workTimer: 0.1 * 60,
-    breakTimer: 0.1 * 60,
+    workTimer: 30 * 60,
+    breakTimer: 5 * 60,
     timeLeft: null,
     timer: null,
     disableStart: false,
@@ -30,6 +30,23 @@ export default class Timer extends Component {
     }
   }
 
+  takeBreak = () => {
+    if (this.state.work) {
+      this.setState((prevState) => ({
+        work: false,
+        timeLeft: 5 * 60,
+      }))
+      // TODO: This is a sort of hack to make it work. Change it later.
+      setTimeout(this.animate, 50)
+    }
+    return
+  }
+
+  pause = () => {
+    clearInterval(this.state.timer)
+    this.toggleStartButton(false)
+  }
+
   switchTimers = () => {
     this.setState((prevState) => ({
       work: !prevState.work,
@@ -39,6 +56,7 @@ export default class Timer extends Component {
       this.incrementSessionCount()
     }
     this.refillTimer()
+    // ERR: This can't be called earlier because of the same reason as mentions above.
     this.animate()
   }
 
@@ -123,11 +141,17 @@ export default class Timer extends Component {
             disabled={this.state.disableStart}>
             Start
           </button>
-          <button className="item" onClick={this.cancelTimer}>
+          {/* <button className="item" onClick={this.cancelTimer}>
             Cancel
+          </button> */}
+          <button className="item" onClick={this.pause}>
+            Pause
           </button>
         </div>
-        <div className="flex col">
+        <div className="flex row">
+          <button className="item" onClick={this.takeBreak}>
+            Take a break
+          </button>
           <button onClick={this.endTask} className="item btn-danger">
             End Task
           </button>

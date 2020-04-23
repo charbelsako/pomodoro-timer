@@ -1,9 +1,8 @@
 [x] - Add animation to switch between work 
       time label and break time label
 
-[ ] - Add a settings page that allows changing 
-      the various state values.
-      (different times for work and breaks)
+[ ] - Add a settings page (with animations) that allows changing 
+      the times for work (25,30,35) and breaks (5,10,15).
 
 [ ] - Add more styling (maybe bootstrap or materialize)
 
@@ -29,3 +28,6 @@
       done. based on the data from the file.
 
 [x] - Bug: When cancelled or ended the label should return to work label
+
+[x] - Add "take a break" button 
+[x] - Add "pause" button
